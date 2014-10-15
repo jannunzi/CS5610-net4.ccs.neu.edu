@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Employee Client</title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" />
+    <script src="../../../javascript/angular.min.js"></script>
+</head>
+<body ng-app>
+    <div class="container" ng-controller="EmployeeController">
+        <h1>Employee Client</h1>
+        <a href="http://localhost:3000/employees">Get All Employee</a>
+        <h2>Employees</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>{{employee.first}}</td>
+                    <td>{{employee.last}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="select(employee)">Select</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Projects</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="project in projects">
+                    <td>
+                        {{project.name}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function EmployeeController($scope, $http) {
+            $http.get("http://localhost:3000/employees")
+            .success(function (employees) {
+                console.log(employees);
+                $scope.employees = employees;
+            });
+
+            $scope.select = function (employee) {
+                $scope.projects = employee.projects;
+            }
+        }
+    </script>
+</body>
+</html>

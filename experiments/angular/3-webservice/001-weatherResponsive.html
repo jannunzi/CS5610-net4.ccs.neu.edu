@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angular Weather</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="../js/angular.min.js"></script>
+</head>
+<body ng-app>
+    <div class="container" ng-controller="Weather">
+        <h1>Angular Weather</h1>
+
+        <a id="url" href="http://api.worldweatheronline.com/free/v1/weather.ashx?q=01827,USA&format=json&num_of_days=2&key=s3uv4fjbaw4pqtp26rh48afd">
+            01827
+        </a>
+
+        <input ng-model="zip" placeholder="ZIP" type="text" class="form-control" value="01827" />
+        <br />
+        <input ng-model="numberOfDays" placeholder="Number Of Days" type="number" class="form-control" value="3" />
+        <br />
+        <button ng-click="getWeather()" class="btn btn-primary btn-block">Get Weather</button>
+
+        <div class="row" ng-repeat="weather in weathers">
+            <div class="col-sm-3">{{weather.date}}</div>
+            <div class="col-sm-3">{{weather.tempMinF}} - {{weather.tempMaxF}}</div>
+            <div class="col-sm-3">
+                <span ng-repeat="desc in weather.weatherDesc">
+                    {{desc.value}}
+                </span>
+            </div>
+            <div class="col-sm-3">
+                <img ng-repeat="icon in weather.weatherIconUrl" ng-src="{{icon.value}}" />
+                <br/>
+            </div>
+        </div>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Temperature
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Images
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="weather in weathers">
+                    <td>{{weather.date}}</td>
+                    <td>{{weather.tempMinF}} - {{weather.tempMaxF}}</td>
+                    <td>
+                        <span ng-repeat="desc in weather.weatherDesc">
+                            {{desc.value}}
+                        </span>
+                    </td>
+                    <td><img ng-repeat="icon in weather.weatherIconUrl" ng-src="{{icon.value}}" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        function Weather($scope, $http) {
+            $scope.zip = "01827";
+            $scope.numberOfDays = 3;
+            $scope.getWeather = function () {
+                UpdateWeather($scope, $http);
+            }
+            UpdateWeather($scope, $http);
+        }
+
+        function UpdateWeather($scope, $http) {
+
+            $http.get("http://api.worldweatheronline.com/free/v1/weather.ashx?q=" + $scope.zip + ",USA&format=json&num_of_days=" + $scope.numberOfDays + "&key=s3uv4fjbaw4pqtp26rh48afd")
+            .success(function (response) {
+                console.log(response);
+                $scope.weathers = response.data.weather;
+            });
+        }
+    </script>
+</body>
+</html>

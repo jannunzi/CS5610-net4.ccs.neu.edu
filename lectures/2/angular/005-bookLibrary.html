@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/angular.min.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app>
+    <div class="container" ng-controller="BookLibraryController">
+        <h1>Book Library</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input class="form-control" ng-model="newBook.isbn" placeholder="ISBN" /></td>
+                    <td><input class="form-control" ng-model="newBook.title" placeholder="Title"/></td>
+                    <td><input class="form-control" ng-model="newBook.author" placeholder="Author"/></td>
+                    <td>
+                        <button ng-click="add()" class="btn btn-success">Add</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books">
+                    <td>{{book.isbn}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="delete(book)">Delete</button>
+                        <button class="btn btn-warning" ng-click="select(book)">Select</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Source</h2>
+
+        <a href="/home/jga/fileview/Default.aspx?~/lectures/2/angular/005-bookLibrary.html">HTML</a>
+
+    </div>
+    <script>
+        function BookLibraryController($scope) {
+            var book1 = {
+                isbn: "123234345",
+                title: "Book 1",
+                author: "Author 1",
+            };
+            var book2 = {
+                isbn: "23455423",
+                title: "Book 2",
+                author: "Author 2",
+            };
+            var book3 = {
+                isbn: "34566543",
+                title: "Book 3",
+                author: "Author 3",
+            };
+            var books = [book1, book2, book3];
+            $scope.books = books;
+
+            $scope.select = function (book) {
+                console.log(book);
+                $scope.newBook = book;
+            }
+
+            $scope.delete = function (book) {
+                var index = $scope.books.indexOf(book);
+                $scope.books.splice(index,1);
+            }
+            $scope.add = function () {
+                console.log($scope.newBook);
+                var book = {
+                    isbn: $scope.newBook.isbn,
+                    title: $scope.newBook.title,
+                    author: $scope.newBook.author
+                };
+                $scope.books.push(book);
+            }
+        }
+    </script>
+</body>
+</html>

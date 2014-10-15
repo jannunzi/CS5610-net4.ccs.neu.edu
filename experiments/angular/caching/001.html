@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JSON Browser</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app="cacheExampleApp">
+
+    <div ng-controller="CacheController" class="container">
+        <h1>AngularJS's Caching Example</h1>
+
+        Example taken from
+        <a href="https://docs.angularjs.org/api/ng/service/$cacheFactory">here</a>
+
+        <hr/>
+
+            <input ng-model="newCacheKey" placeholder="Key">
+            <input ng-model="newCacheValue" placeholder="Value">
+            <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
+
+            <p ng-if="keys.length">Cached Values</p>
+            <div ng-repeat="key in keys">
+                <span ng-bind="key"></span>
+                <span>: </span>
+                <b ng-bind="cache.get(key)"></b>
+            </div>
+
+            <p>Cache Info</p>
+            <div ng-repeat="(key, value) in cache.info()">
+                <span ng-bind="key"></span>
+                <span>: </span>
+                <b ng-bind="value"></b>
+            </div>
+</div>
+
+
+    <script src="../js/angular.min.js"></script>
+    <script>
+        angular.module('cacheExampleApp', []).
+          controller('CacheController', ['$scope', '$cacheFactory', function ($scope, $cacheFactory) {
+              $scope.keys = [];
+              $scope.cache = $cacheFactory('cacheId');
+              $scope.put = function (key, value) {
+                  if ($scope.cache.get(key) === undefined) {
+                      $scope.keys.push(key);
+                  }
+                  $scope.cache.put(key, value === undefined ? null : value);
+              };
+          }]);
+    </script>
+</body>
+</html>

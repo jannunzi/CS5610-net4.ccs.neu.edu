@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Local Storage</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="../js/angular.min.js"></script>
+</head>
+<body ng-app>
+    <div class="container" ng-controller="LocalStorage">
+        <h1>Angular Hello World</h1>
+
+        <input ng-model="ui.username.name" class="form-control"/>
+        <button ng-click="add()" class="btn btn-block">Login</button>
+
+        <ul>
+            <li ng-repeat="user in ui.users">
+                {{user.name}}
+            </li>
+        </ul>
+
+        <a href="/fileview/Default.aspx?~/experiments/angular/2-helloworld/002-localStorage.html">HTML</a>
+    </div>
+    <script>
+        function LocalStorage($scope) {
+            //            $scope.ui = JSON.parse(localStorage.getItem("ert"));
+            $scope.ui = {};
+            $scope.ui.users = [];
+            $scope.add = function () {
+                var user = {
+                    name: $scope.ui.username
+                };
+//                var ewq = $scope.ui.username + "";
+                $scope.ui.users.push(user);
+//                console.log($scope.ui);
+  //              localStorage.setItem("wer", JSON.stringify($scope.ui));
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angular Data Model</title>
+    <script src="../../../javascript/jquery-1.10.2.js"></script>
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+</head>
+<body ng-app>
+
+    <div class="container" ng-controller="DataModelController">
+
+        <h1>Angular Data Model</h1>
+
+        {{employee.firstName}}
+        {{employee.lastName}}
+
+        <h2>Documentation</h2>
+
+        <p>
+            Declare a data model in the view and
+            inject objects from AngularController
+        </p>
+
+
+        <pre ng-non-bindable>
+{{employee.firstName}}
+{{employee.lastName}}</pre>
+
+        <pre>
+function DataModelController($scope) {
+    var alice = {
+        firstName: "Alice",
+        lastName: "Wonderland"
+    };
+    $scope.employee = alice;
+}</pre>
+
+        <h2>Source</h2>
+
+        <a href="/home/jga/fileview/Default.aspx?~/lectures/2/angular/002-dataModel.html">HTML</a>
+
+    </div>
+
+    <script>
+        function DataModelController($scope) {
+            var alice = {
+                firstName: "Alice",
+                lastName: "Wonderland"
+            };
+            $scope.employee = alice;
+        }
+    </script>
+</body>
+</html>

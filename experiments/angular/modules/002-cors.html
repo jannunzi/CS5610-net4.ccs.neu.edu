@@ -1,0 +1,40 @@
+﻿<!--form action="http://localhost:8080/createApplicationPost" method="POST"-->
+<form action="http://cs561001-jga123.rhcloud.com/createApplicationPost" method="POST">
+    <input name="name" />
+    <button>Create</button>
+</form>
+
+<script src="../js/angular.min.js"></script>
+<body ng-app="">
+    <div ng-controller="Controller">
+    </div>
+    <script>
+        function Controller($scope, $http) {
+            var test = { testing: "123" };
+
+            //$http.get("http://cs561002-jga123.rhcloud.com/env")
+            //.success(function (response) {
+            //    console.log(response);
+            //});
+
+//            $http.post("http://localhost:8080/post123", { test: 234 })
+            $http.post("http://cs561002-jga123.rhcloud.com/post123", { test: 123 })
+            .success(function (response) {
+                console.log(response);
+            });
+
+//            $http.post("http://localhost:8080/postget")
+            $http.post("http://cs561002-jga123.rhcloud.com/postget")
+            .success(function (response) {
+                console.log(response);
+            });
+
+            /*
+            $http.post("http://cs561001-jga123.rhcloud.com/createApplicationPost", test)
+			.success(function (response) {
+			    console.log(response);
+			});
+            */
+        }
+    </script>
+</body>

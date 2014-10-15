@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NodeJS</title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Express</h1>
+        <h2>Introduction</h2>
+        <p>
+            NodeJS has many great packages available through NPM or
+            (Node Package Manager). You can install new packages by
+            using the npm command installed when you installed NodeJS.
+        </p>
+        <p>
+            One of the more popular packages is Express. Express allows
+            creating servers and Web Services in NodeJS very easy.
+            First we need to install express in our NodeJS application.
+        </p>
+        <h2>Install the Express Node Module</h2>
+        <p>
+            Use npm to install express in your application. Create a
+            directory where your application will exist, change to
+            that directory and then execute the following in your
+            command line:
+            <pre>
+npm install express
+</pre>
+            Npm will create a node_modules directory and download
+            all the necessary libraries to that directory.
+        </p>
+        <h2>Create a Hello World Server</h2>
+        <p>
+            Now let's create a simple hello world application.
+            Create a file called server.js, and load the express
+            module and create an express application by typing
+            the following in the file. The name of the file does not matter.
+        </p>
+        <pre>
+var express = require('express');
+var app = express();
+</pre>
+        <p>
+            Now let's bind an HTTP request of the root of the
+            application Web context "/" to an HTTP response.
+            Keep typing in the server.js file:
+        </p>
+        <pre>
+app.get('/', function(req, res){
+    res.send('Hello World');
+});
+</pre>
+        <p>
+            Finally have the express application listen for
+            HTTP requests at port 3000 (a common PORT number).
+            The anonymous function used in listen() just
+            notifies that the server is ready and listening.
+            Type the following in server.js
+        </p>
+        <pre>
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+</pre>
+        <p>
+            You should have the following server.js content
+        </p>
+        <pre>
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res){
+  res.send('Hello World');
+});
+
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+</pre>
+        <p>
+            Let's now run the server from the command line as follows
+        </p>
+        <pre>
+> node server.js
+Listening on port 3000
+</pre>
+        <p>
+            Now that the server is listening to port 3000, try
+            hitting by pointing a browser to http://localhost:3000.
+            The server should respond with "Hello World"
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Event Handlers</title>
+    <script src="../../../javascript/jquery-1.10.2.js"></script>
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+</head>
+<body ng-app>
+
+    <div class="container" ng-controller="DataModelController">
+
+        <h1>Angular Event Handlers</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Salary</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <th><input ng-model="newEmployee.firstName" class="form-control"/></th>
+                    <th><input ng-model="newEmployee.lastName" class="form-control" /></th>
+                    <th><input ng-model="newEmployee.salary" class="form-control" /></th>
+                    <th>
+                        <button ng-click="add()" class="btn btn-success">Add</button>
+                        <button ng-click="update()" class="btn btn-success">Update</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>{{employee.firstName}}</td>
+                    <td>{{employee.lastName}}</td>
+                    <td>${{employee.salary}}</td>
+                    <td>
+                        <button ng-click="delete(employee)" class="btn btn-danger">Delete</button>
+                        <button ng-click="select(employee)" class="btn btn-primary">Select</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Source</h2>
+
+        <a href="/home/jga/fileview/Default.aspx?~/lectures/2/angular/004-eventHandlers.html">HTML</a>
+
+    </div>
+
+    <script>
+        function DataModelController($scope) {
+            var alice = {
+                firstName: "Alice",
+                lastName: "Wonderland",
+                salary: 123321
+            };
+
+            var bob = {
+                firstName: "Bob",
+                lastName: "Marley",
+                salary:234432
+            };
+
+            var charlie = {
+                firstName: "Charlie",
+                lastName: "Garcia",
+                salary:345543
+            };
+
+     //       var employees = [alice, bob, charlie];
+
+            $scope.employees = [];
+
+            $scope.delete = function (employee) {
+                var index = $scope.employees.indexOf(employee);
+                $scope.employees.splice(index, 1);
+            }
+            $scope.add = function () {
+                var newEmployee = {
+                    firstName: $scope.newEmployee.firstName,
+                    lastName: $scope.newEmployee.lastName,
+                    salary: $scope.newEmployee.salary
+                };
+                $scope.employees.push(newEmployee);
+            }
+            $scope.select = function (employee) {
+                $scope.newEmployee = employee;
+            }
+        }
+    </script>
+</body>
+</html>

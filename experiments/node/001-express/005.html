@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NodeJS JSON</title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Responding with JSON from NodeJS Express</h1>
+        <h2>Introduction</h2>
+        <p>
+            Increasingly we use JSON as the standard format of
+            data criscrossing the Internet today. Express and
+            NodeJS make it easy to send and receive JSON to
+            and fro between a client (browser) and a server (NodeJS).
+            Here we show how to respond with JSON from a client
+            HTTP request.
+        </p>
+        <h2>Hello JSON</h2>
+        <p>
+            To respond with JSON, it is as simple as using
+            the res.json() method to respond with JSON.
+            Let's respond with a simple "Hello JSON" message
+            from the server. Add the following lines to the
+            previous example. We are binding an HTTP URL
+            request for "/hello" to a JSON object response.
+        </p>
+        <pre>
+app.get('/hello', function(req, res){
+    var jsonObject = {
+        message: "Hello JSON"
+    };
+    res.json(jsonObject);
+});
+</pre>
+        <p>
+            You should now have the following content in
+            server.js
+        </p>
+        <pre>
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res){
+  res.send('Hello World');
+});
+<b style="color:red">
+app.get('/hello', function(req, res){
+    var jsonObject = {
+        message: "Hello JSON"
+    };
+    res.json(jsonObject);
+});
+</b>
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+</pre>
+        <p>
+            Try hitting the service by pointing your
+            browser to http://localhost:3000/hello.
+            The server should respond with
+        </p>
+        <pre>
+{
+    message: "Hello JSON"
+}
+</pre>
+    </div>
+</body>
+</html>

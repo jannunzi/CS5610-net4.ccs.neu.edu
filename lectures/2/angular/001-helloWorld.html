@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Angular Hello World</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app>
+    <h1>Angular Hello World</h1>
+
+    <div ng-controller="HelloWorldController">
+        <h2>Message From Hello World Controller</h2>
+
+        {{message}}
+
+    </div>
+
+    <script>
+        function HelloWorldController($scope) {
+            $scope.message = "Hello World!!!!";
+            console.log("Hello World");
+        }
+    </script>
+
+    <h2>Documentation</h2>
+
+    <h3>Download</h3>
+    <p>
+        Download AngularJS from
+        <a href="https://angularjs.org/">AngularJS</a>
+    </p>
+
+    <h3>Install</h3>
+    <p>
+        Add it to your page as follows:
+
+        <pre>
+&lt;script src="js/angular.min.js"&gt;&lt;/script&gt;
+        </pre>
+
+    </p>
+
+    <h3>Templates</h3>
+    <p>Declare Templates using curly brackets</p>
+
+    <h3>Source</h3>
+
+    <a href="/home/jga/fileview/Default.aspx?~/lectures/2/angular/001-helloWorld.html">HTML</a>
+
+</body>
+</html>

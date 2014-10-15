@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JSON Browser</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app>
+    <div class="container" ng-controller="JSONBrowser">
+        <h1>JSON Browser</h1>
+
+        <ul>
+            <li ng-repeat="key in json">{{key}}</li>
+        </ul>
+
+        <ul>
+            <li ng-repeat="tuple in tuples">
+                {{tuple.key}}
+            </li>
+        </ul>
+
+        <!--<ul>
+            <li ng-repeat="key in keys">
+                <span ng-click="drillDown()">{{key}}</span>
+            </li>
+        </ul>-->
+        <!--<hr/>
+        <ul>
+            <li ng-repeat="object in Object.keys(objects)">
+                {{object}}
+            </li>
+        </ul>-->
+    </div>
+    <script src="../js/angular.min.js"></script>
+    <script>
+        function JSONBrowser($scope) {
+
+            $scope.json = json;
+
+            var tuples = [];
+            var keys = Object.keys(json);
+            for (var i = 0; i < keys.length; i++)
+            {
+                var key = keys[i];
+                tuples[i] = {};
+                tuples[i].key = key;
+                tuples[i].value = json[key];
+            }
+            $scope.tuples = tuples;
+
+            console.log(json);
+
+            $scope.renderJson = function (json) {
+                if (typeof json == "object") {
+                    $scope.renderObject(json);
+                }
+            }
+
+            $scope.renderObject = function(object) {
+                var keys = Object.keys(object);
+                console.log(keys);
+                console.log(keys.length);
+                $scope.keys = keys;
+            }
+
+            $scope.renderJson(json);
+        }
+
+        var json = { "data": { "current_condition": [{ "cloudcover": "75", "humidity": "66", "observation_time": "05:30 PM", "precipMM": "0.4", "pressure": "1017", "temp_C": "22", "temp_F": "71", "visibility": "16", "weatherCode": "116", "weatherDesc": [{ "value": "Partly Cloudy" }], "weatherIconUrl": [{ "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0002_sunny_intervals.png" }], "winddir16Point": "S", "winddirDegree": "189", "windspeedKmph": "0", "windspeedMiles": "0" }], "request": [{ "query": "01827", "type": "Zipcode" }], "weather": [{ "date": "2014-10-07", "precipMM": "2.1", "tempMaxC": "22", "tempMaxF": "72", "tempMinC": "13", "tempMinF": "56", "weatherCode": "353", "weatherDesc": [{ "value": "Light rain shower" }], "weatherIconUrl": [{ "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0009_light_rain_showers.png" }], "winddir16Point": "SSW", "winddirDegree": "201", "winddirection": "SSW", "windspeedKmph": "27", "windspeedMiles": "17" }, { "date": "2014-10-08", "precipMM": "6.1", "tempMaxC": "20", "tempMaxF": "68", "tempMinC": "6", "tempMinF": "43", "weatherCode": "176", "weatherDesc": [{ "value": "Patchy rain nearby" }], "weatherIconUrl": [{ "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0009_light_rain_showers.png" }], "winddir16Point": "WSW", "winddirDegree": "244", "winddirection": "WSW", "windspeedKmph": "25", "windspeedMiles": "15" }] } };
+    </script>
+</body>
+</html>

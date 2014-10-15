@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NodeJS Complex JSON</title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Responding with Complex JSON Objects From NodeJS Express</h1>
+        <h2>Introduction</h2>
+        <p>
+            NodeJS runs on a desktop and has access to
+            all the resources accessible to the desktop
+            such as databases, networks, and files.
+            These can be made available as plain text
+            resources, such as files, or formatted
+            as JSON objects for complex data types.
+            Here we show an example of responding
+            with a complex JSON data.
+        </p>
+        <h2>An Array of Applications</h2>
+        <p>
+            In the previous example we showed how to
+            respond with a simple object that contained
+            a simple Hello World message. We can also
+            respond with more complex JSON objects and
+            even with collections of objects formatted
+            as JSON arrays. Let's first create a set of
+            developers.
+        </p>
+        <pre>
+var alice = {
+    first: "Alice",
+    last: "Wonderland",
+    email: "alice@wonderland.com"
+};
+var bob = {
+    first: "Bob",
+    last: "Marley",
+    email: "bob@marley.com"
+};
+</pre>
+        <p>
+            Now let's create a set of applications.
+        </p>
+        <pre>
+var app1 = {
+    name: "Alice's iPhone App",
+    price: 0.99
+};
+var app2 = {
+    name: "Alice's iPad App",
+    price: 1.99
+};
+var app3 = {
+    name: "Bob's android App",
+    price: 2.99
+};
+var app4 = {
+    name: "Bob's windows App",
+    price: 3.99
+}
+</pre>
+        <p>
+            Now let's associate the apps to their developers
+        </p>
+<pre>
+alice.applications = [app1, app2];
+bob.applications = [app3, app4];
+</pre>
+        <p>
+            Now let's create a JSON array that contains all the users
+        </p>
+<pre>
+var users = [alice, bob];
+app.get('/users', function(req, res){
+    res.json(users);
+});
+</pre>
+        <p>
+            You should now have the following content in
+            server.js
+        </p>
+        <pre>
+            var express = require('express');
+var app = express();
+app.get('/', function(req, res){
+  res.send('Hello World');
+});
+app.get('/hello', function(req, res){
+    var jsonObject = {
+        message: "Hello JSON"
+    };
+    res.json(jsonObject);
+});
+<b style="color:red">
+var alice = {
+    first: "Alice",
+    last: "Wonderland",
+    email: "alice@wonderland.com"
+};
+var bob = {
+    first: "Bob",
+    last: "Marley",
+    email: "bob@marley.com"
+};
+var app1 = {
+    name: "Alice's iPhone App",
+    price: 0.99
+};
+var app2 = {
+    name: "Alice's iPad App",
+    price: 1.99
+};
+var app3 = {
+    name: "Bob's android App",
+    price: 2.99
+};
+var app4 = {
+    name: "Bob's windows App",
+    price: 3.99
+};
+alice.applications = [app1, app2];
+bob.applications = [app3, app4];
+var users = [alice, bob];
+app.get('/users', function(req, res){
+    res.json(users);
+});
+</b>
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+</pre>
+        <p>
+            Try hitting the service by pointing your
+            browser to http://localhost:3000/users.
+            The server should respond with
+        </p>
+        <pre>
+[
+    {
+        first: "Alice",
+        last: "Wonderland",
+        email: "alice@wonderland.com",
+        applications: [
+            {
+                name: "Alice's iPhone App",
+                price: 0.99
+            },
+            {
+                name: "Alice's iPad App",
+                price: 1.99
+            }
+        ]
+    },
+    {
+        first: "Bob",
+        last: "Marley",
+        email: "bob@marley.com",
+        applications: [
+            {
+                name: "Bob's android App",
+                price: 2.99
+            },
+            {
+                name: "Bob's windows App",
+                price: 3.99
+            }
+        ]
+    }
+]
+</pre>
+    </div>
+</body>
+</html>

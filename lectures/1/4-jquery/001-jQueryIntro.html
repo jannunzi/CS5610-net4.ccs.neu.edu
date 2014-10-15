@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Box Model</title>
+    <style>
+        div {
+            background-color : red;
+            /*position : absolute;
+            top:100px;
+            left:100px;*/
+            width:100px;
+            height:100px;
+            overflow:hidden;
+            margin:100px;
+            border:40px black dotted;
+            padding:40px;
+        }
+    </style>
+</head>
+<body>
+
+    Slide: 
+    <input type="range" min="0" max="100" id="padding" />
+
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+    </div>
+
+    <h2>Source</h2>
+
+    <a href="/home/jga/fileview/Default.aspx?~/lectures/1/4-jquery/001-jQueryIntro.html">HTML</a>
+
+    <script src="js/jquery-1.10.2.js"></script>
+    <script>
+        $(main);
+
+        function main() {
+            $("div").css("background-color", "green");
+            $("input#padding").click(updatePadding);
+        }
+
+        function updatePadding() {
+            var padding = $("input#padding").val();
+            console.log(padding);
+            $("div").css("padding", padding);
+        }
+    </script>
+</body>
+</html>

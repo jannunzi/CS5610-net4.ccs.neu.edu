@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NodeJS Parsing Requests</title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Parsing Requests in NodeJS Express</h1>
+        <h2>Introduction</h2>
+        <p>
+            Applications need to be able to adapt
+            to various aspects such as context,
+            time, state change, and parameters.
+            Here we show how we an NodeJS Express
+            application can handle request parameters.
+        </p>
+        <h2>Hello X</h2>
+        <p>
+            Let's create a simple Hello service that
+            instead of responding a static Hello World
+            message, responds Hello followed by a name
+            provided as a parameter. Create a new file
+            called server2.js and type the following:
+        </p>
+        <pre>
+var express = require("express");
+var app = express();
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
+</pre>
+        <p>
+            Now let's map /hello to a static response:
+        </p>
+        <pre>
+app.get("/hello", function(req, res){
+    res.json({message: "Hello"});
+});
+</pre>
+        <p>
+            Try it and verify that it responds with {message: "Hello"}.
+            Now let's modify the service to parse a name parameter from
+            the request and respond with the content of the request
+            parameters:
+        </p>
+        <pre>
+app.get("/hello/:name", function(req, res){
+    res.json(req.params);
+});
+</pre>
+        <p>
+            Try it by hitting the service with the following URL
+            http://localhost:3000/hello/joe and verify that it
+            responds with { name: "joe" }.
+        </p>
+        <p>
+            Let's extract the value of the name and use it in a response
+            as shown below. Note how the parameter "name" becomes
+            an attribute of the req.params object
+        </p>
+        <pre>
+app.get("/hello/:name", function(req, res){
+    res.send("Hello " + req.params.name);
+});
+</pre>
+        <h3>Good Bye Y</h3>
+        <p>
+            We can also pass parameters in the query string
+            and parse it on the server using req.query as follows:
+        </p>
+        <pre>
+app.get("/goodbye", function(req, res) {
+	res.json(req.query);
+});
+</pre>
+        <p>
+            Try it by pointing your browser to the URL
+        </p>
+    </div>
+</body>
+</html>

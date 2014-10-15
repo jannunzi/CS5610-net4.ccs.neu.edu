@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NodeJS</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>NodeJS</h1>
+        <h2>Introduction</h2>
+        <p>
+            <a href="http://nodejs.org/" target="_blank">NodeJS</a>
+
+            allows executing JavaScript on a desktop. With it's
+
+            <a href="https://www.npmjs.org/" target="_blank">extensive library</a>
+
+            of really useful scripts, nodejs is quickly becoming great platform for developing
+            very powerful server applications.
+
+            Read more about nodejs from it's main site at
+
+            <a href="http://nodejs.org/" target="_blank">http://nodejs.org/</a>
+        </p>
+        <h2>Download and Install NodeJS</h2>
+        <p>
+            NodeJS can be
+
+            <a href="http://nodejs.org/download/" target="_blank">
+                downloaded and installed in most operating systems
+            </a>.
+            
+            The installation installs several executables in your local hard drive.
+            In Windows environments, it might be in C:\Program Files (x86)\nodejs.
+            The two executables we care about are node and npm. Add the directory
+            to your path so that you can execute these from anywhere in the command line.
+        </p>
+        <h2>Hello World NodeJS</h2>
+        <p>
+            To create a NodeJS program, simple create a JavaScript file with
+            valid JavaScript code. The only limitation of the JavaScript code is that
+            it is not running in a browser, it's running in your desktop.
+            Which is not a limitation at all. Since it's running on your desktop, you
+            can do all sorts of things you could not do before. You can access the
+            file system, you can connect to databases, you can do network connections
+            that would be allowed from a browser.
+        </p>
+        <p>
+            Let's create a Hello World program. In some directory, create a file called
+            hello.js and type the following in the file:
+
+            <pre>
+console.log("Hello World!");
+</pre>
+            Then from the command line, change to the directory where the file is located
+            and type the following at the command line to run your program:
+            <pre>
+> node hello.js
+Hello World!
+</pre>
+            Note that the program wrote to the console. Congrats, you just wrote your first
+            NodeJS program.
+        </p>
+    </div>
+</body>
+</html>

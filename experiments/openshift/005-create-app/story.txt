@@ -1,0 +1,10 @@
+﻿../img/0000-openshift-com.png									Go to Open Shift
+../img/0001-signup.png											Sign Up for an Account
+../img/0002-signin.png											Sign In to Open Shift
+../img/001-click-add-application.png							Click Add Application
+../img/002-select-node-js.png									Select NodeJS Application
+../img/003-name-application.png									Name your Application
+../img/004-copy-git-command-go-to-dashboard.png					Copy Git Command to Clone Application Locally
+../img/005-application-overview-page-visit-new-app.png			Application Overview Page
+../img/006-visit-new-app.png									Visit your new app
+http://cs5610-jannunzi.rhcloud.com/								Live Application

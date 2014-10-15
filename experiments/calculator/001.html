@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello</h1>
+        <form>
+            <input class="form-control" id="dsa"/>
+            <input class="form-control" type="date" />
+            <input class="form-control" type="time" />
+            <input class="form-control" type="range" min="0" max="255" id="red" />
+            <input class="form-control" type="range" min="0" max="255" id="green" />
+            <input class="form-control" type="range" min="0" max="255" id="blue" />
+            <button class="btn btn-block btn-primary">Done</button>
+        </form>
+        <div class="changeMe" style="width:300px; height:300px">Change Me</div>
+    </div>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("#red").mousemove(changeColor);
+            $("#green").mousemove(changeColor);
+            $("#blue").mousemove(changeColor);
+        });
+        function changeColor() {
+            var red = $("#red").val();
+            var green = $("#green").val();
+            var blue = $("#blue").val();
+            red = parseInt(red);
+            red = red.toString(16);
+            green = parseInt(green);
+            green = green.toString(16);
+            blue = parseInt(blue);
+            blue = blue.toString(16);
+            var color = "#"+red + "" + green + "" + blue;
+            console.log(color);
+            $(".changeMe").css("background-color", color);
+        }
+    </script>
+</body>
+</html>

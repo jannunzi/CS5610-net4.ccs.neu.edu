@@ -1,0 +1,20 @@
+﻿p {
+    background-color : red;
+}
+li#item1 {
+    color: red;
+    background-color : blue;
+}
+.item {
+    color:blue;
+    background-color:red;
+}
+.blue {
+    color : blue;
+}
+.red {
+    color : red;
+}
+.bgYellow {
+    background-color : yellow;
+}

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="../js/angular.min.js"></script>
+</head>
+<body ng-app="MyApp">
+    <div class="container" ng-controller="HelloController">
+        <h1>Angular Hello World</h1>
+        {{hello}}
+
+        <h2>Model</h2>
+        {{person.firstName}}
+
+        <input ng-model="person.firstName" />
+
+        <h2>Repeat</h2>
+
+        <ul ng-repeat="employee in employees">
+            <li>{{employee.firstName}}</li>
+        </ul>
+
+    </div>
+    <script>
+
+        var app = angular.module("MyApp", []);
+
+        app.controller("HelloController", ["$scope", function HelloWorld($scope) {
+            $scope.hello = "Hello World";
+
+            var alice = {
+                firstName: "Alice",
+                lastName: "Wonderland"
+            };
+
+            $scope.person = alice;
+
+            var bob = {
+                firstName: "Bob",
+                lastName: "Marley"
+            };
+
+            var employees = [alice, bob];
+
+            $scope.employees = employees;
+        }]);
+    </script>
+</body>
+</html>
