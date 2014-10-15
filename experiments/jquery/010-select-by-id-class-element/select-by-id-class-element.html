@@ -1,13 +1,41 @@
 <h1>Select by Id, Class, or Element Type Experiment</h1>
-<h2 id="selector">Existing content in h2#selector</h2>
-<h2 class="selector">Existing content in h2.selector</h2>
-<p class="selector">Existing content in p.selector</h2>
-<script src="../js/jquery-1.10.2.js">
-</script>
+
+<h2 id="selector">This is the only existing content whose ID attribute is 'selector'</h2>
+<h2 class="selector">This is one of 2 existing contents whose CLASS attribute is 'selector'</h2>
+<p class="selector">This is the other existing content whose CLASS attribute is 'selector'</h2>
+
+<script src="../js/jquery-1.10.2.js"></script>
 <script>
-	$(function init() {
+	$(function() {
 		$("#selector").append(" Add this content to the only element with ID attribute set to 'selector'");
-		$(".selector").append(" Add this content to all elements with class attribute set to 'selector'");
+		$(".selector").append(" Add this content to all elements with CLASS attribute set to 'selector'");
 		$("h2").append(" Add this content to all elements of type H2");
 	});
 </script>
+
+<hr/>
+<h3>Documentation</h3>
+This experiment illustrates the various ways jQuery can refer to different parts of the DOM. jQuery uses CSS3 selector rules to refer to elements in the DOM. Given the following HTML:
+
+<pre>
+	&lt;h2 id=&quot;selector&quot;&gt;This is the only existing content in whose ID attribute is 'selector'&lt;/h2&gt;
+	&lt;h2 class=&quot;selector&quot;&gt;This is one of 2 existing contents whose CLASS attribute is 'selector'&lt;/h2&gt;
+	&lt;p class=&quot;selector&quot;&gt;This is the other existing content whose CLASS attribute is 'selector'&lt;/h2&gt;</pre>
+
+jQuery can refer to these elements using the following selectors:
+
+<pre>
+	$("#selector") // refers to &lt;h2 id=&quot;selector&quot;&gt;
+	$(".selector") // refers to all elements with CLASS='selector', i.e., &lt;h2 class=&quot;selector&quot;&gt; and &lt;p class=&quot;selector&quot;&gt;
+	$("h2") // refers to all &lt;h2&gt; elements, i.e., &lt;h2 id=&quot;selector&quot;&gt; and &lt;h2 class=&quot;selector&quot;&gt;
+	</pre>
+
+The script goes on to append some content to each of the elements:
+
+<pre>
+	$("#selector").append(" Add this content to the only element with ID attribute set to 'selector'");
+	$(".selector").append(" Add this content to all elements with CLASS attribute set to 'selector'");
+	$("h2").append(" Add this content to all elements of type H2");</pre>
+	
+<h3>Source</h3>
+<a href="https://github.com/jannunzi/CS5610-net4.ccs.neu.edu/blob/master/experiments/jquery/010-select-by-id-class-element/select-by-id-class-element.html">select-by-id-class-element.html</a>

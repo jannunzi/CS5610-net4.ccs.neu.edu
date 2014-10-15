@@ -1,0 +1,25 @@
+
+<!-- some static content -->
+<h1>Anonymous Init Function</h1>
+<h2 id="message"></h2>
+
+<!-- load the jquery library -->
+<script src="../js/jquery-1.10.2.js"></script>
+
+<!--	declare your script after jquery library has loaded
+	your query can be declared within the HTML page
+	but it's better to declare it as a separate file	-->
+<script>
+	// the jquery library we loaded declares function jQuery
+	// when the HTML page is done loading and the DOM is ready
+	// jQuery() function will call the function in the parameter, i.e., init()
+	jQuery(function ()
+	{
+		// say hello in the browser's console
+		// press F12 in the browser to see the message
+		console.log("Hello World");
+		
+		// say hello by modifying the DOM
+		jQuery("#message").append("Hello World");
+	});
+</script>
