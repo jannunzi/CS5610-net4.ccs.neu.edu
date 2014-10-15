@@ -1,0 +1,13 @@
+<h1>Creating New Content</h1>
+<div id="existing">Existing Content</div>
+<script src="../js/jquery-1.10.2.js">
+</script>
+<script>
+	$(function init() {
+		var html = "<div>New Content</div>";
+		$("body").append(html);
+		
+		html = "<p>Even More Content</p>";
+		$("#existing").append(html);
+	});
+</script>

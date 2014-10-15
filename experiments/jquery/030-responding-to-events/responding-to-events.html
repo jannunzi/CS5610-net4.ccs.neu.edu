@@ -1,0 +1,43 @@
+<h1>Responding To Events</h1>
+<button id="click-me">Click Me</button>
+<div id="hover-over-me">Hover Over Me</div>
+<input class="change-my-value focus-listener"/>
+<br/>
+<select class="change-my-value focus-listener">
+	<option>Value 1</option>
+	<option>Value 2</option>
+	<option>Value 3</option>
+</select>
+<br/>
+<input id="key-listener" class="focus-listener"/>
+<script src="../js/jquery-1.10.2.js">
+</script>
+<script>
+	$(function init() {
+		$("#click-me").click(respondToClick);
+		$("#hover-over-me").hover(hoverOn, hoverOut);
+		$(".change-my-value").change(respondToChange);
+		$("#key-listener").keypress(keyListener);
+		$(".focus-listener").focus(focusHandler);
+	});
+	function focusHandler(event) {
+		console.log("focusHandler");
+	}
+	function keyListener(event) {
+		console.log(event);
+	}
+	function respondToChange() {
+		var elementThatChanged = $(this);
+		var newValue = elementThatChanged.val();
+		alert("Value Changed to " + newValue);
+	}
+	function hoverOn() {
+		alert("Hover On");
+	}
+	function hoverOut() {
+		alert("Hover Out");
+	}
+	function respondToClick() {
+		alert("You clicked me");
+	}
+</script>

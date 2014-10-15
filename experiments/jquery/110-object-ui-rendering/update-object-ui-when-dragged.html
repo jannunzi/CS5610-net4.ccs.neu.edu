@@ -1,0 +1,49 @@
+<h1>Object UI Rendering</h1>
+<input id="top"><input id="left">
+<button class="add-content" id="h1">Add H1</button>
+<button class="add-content" id="div">Add DIV</button>
+<button class="add-content" id="p">Add Paragraph</button>
+<script src="../js/jquery-1.10.2.js"></script>
+<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+<script>
+	var ui = [
+		{type: "h1", content: "H1 Content", position: {top: 100, left: 100}},
+		{type: "div", content: "DIV Content", position: {top: 200, left: 100}},
+		{type: "p", content: "Paragraph Content", position: {top: 300, left: 100}},
+	];
+	
+	$(function(){
+		$(".add-content").click(addContent);
+		renderUi(ui);
+	});
+	
+	function addContent() {
+		var id = $(this).attr("id");
+		var top = parseInt($("#top").val());
+		var left = parseInt($("#left").val());
+		var obj = {type: id, content: "Content", position: {top: top, left: left}};
+		ui.push(obj);
+		renderUi(ui);
+	}
+	
+	var htmlMap = {h1: "<h1>", div: "<div>", p: "<p>"};
+	
+	function renderUi(ui) {
+		$('.dynamic').remove();
+		for(var i=0; i<ui.length; i++) {
+			var uiObj = ui[i];
+			var type = uiObj.type;
+			var html = htmlMap[type];
+			var top = uiObj.position.top;
+			var left = uiObj.position.left;
+			var content = uiObj.content;
+			var dom = $(html);
+			dom
+				.addClass('dynamic')
+				.append(content)
+				.css({top: top, left: left, position:"absolute"})
+				.draggable();
+			$("body").append(dom);
+		}
+	}
+</script>

@@ -1,0 +1,23 @@
+<h1>Creating New Content On Click</h1>
+<div id="existing">Existing Content</div>
+<button id="add-div">Add Div</button>
+<button id="add-paragraph">Add Paragraph</button>
+<script src="../js/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#add-div").click(addDiv);
+		$("#add-paragraph").click(addParagraph);
+	});
+	
+	function addDiv() {
+		var html = "<div>New Div</div>";
+		var newDivDom = $(html);
+		$("body").append(newDivDom);
+	}
+	
+	function addParagraph() {
+		var html = "<p>New Paragraph</p>";
+		var newParagraphDom = $(html);
+		$("body").append(newParagraphDom);
+	}
+</script>

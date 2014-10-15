@@ -1,0 +1,42 @@
+<h1>Creating New Draggable Content</h1>
+<div id="existing">Existing Content</div>
+<button class="add-new-content" id="div">Add Draggable Div</button>
+<button class="add-new-content" id="paragraph">Add Draggable Paragraph</button>
+<script src="../js/jquery-1.10.2.js"></script>
+<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+<script>
+	$(function() {
+//		$("#add-div").click(addDiv);
+//		$("#add-paragraph").click(addParagraph);
+//		$("#add-div, #add-paragraph").click(addNewElement);
+		$(".add-new-content").click(addNewElement);
+	});
+	
+	function addDiv() {
+		var html = "<div>New Div</div>";
+		var newDom = $(html).draggable();
+		newDom.css({position:"absolute", left:"100px", top:"200px"});
+		$("body").append(newDom);
+	}
+	
+	function addParagraph() {
+		var html = "<p>New Paragraph</p>";
+		var newDom = $(html).draggable();
+		newDom.css({position:"absolute", left:"100px", top:"200px"});
+		$("body").append(newDom);
+	}
+	
+	var htmlMap = {
+		div: "<div>New Div</div>",
+		paragraph: "<p>New Paragraph</p>",
+	};
+	
+	function addNewElement(event) {
+		var id = $(this).attr("id");
+		console.log(id);
+		var html = htmlMap[id];
+		var newDom = $(html).draggable();
+		newDom.css({position:"absolute", left:"100px", top:"200px"});
+		$("body").append(newDom);
+	}
+</script>

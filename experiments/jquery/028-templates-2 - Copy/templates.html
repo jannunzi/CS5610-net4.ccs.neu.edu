@@ -1,0 +1,40 @@
+<h1>Templates</h1>
+
+<p class="template">
+</p>
+
+<script src="../js/jquery-1.10.2.js"></script>
+<script>
+	$(function()
+	{
+		// grab the template
+		var originalTemplate = $(".template");
+		
+		// clone the template and remove it from the dom
+		var template = originalTemplate.clone().removeClass("template");
+		originalTemplate.remove();
+		
+		// clone and add the template to the DOM
+		var content = "Content 1";
+		// clone the template and remove the template class
+		var copy = template.clone();
+		// empty the template's content, add content to it, and add it to the DOM
+		copy.empty().append(content);
+		$("body").append(copy);
+		
+		// everytime you want to use the template,
+		// clone it, empty it, populated with new content, and add it to the DOM
+		// here we use the template 2 more times
+		
+		content = "Content 2";
+		copy = template.clone().empty().append(content);
+		$("body").append(copy);
+		
+		content = "Content 3";
+		copy = template.clone().empty().append(content);
+		$("body").append(copy);
+	});
+</script>
+<hr/>
+<h2>Documentation</h2>
+This experiment illustrates how we can use existing HTML as a template to create dynamic content. This is in contrast to creating the dynamic content from JavaScript. The advantage of using a template is that it can be styled using WYSIWYG tools, or even a plain browser, without having the JavaScript. This allows designers to work independently of JavaScript developers.

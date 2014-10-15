@@ -1,0 +1,13 @@
+<h1>Select by Id, Class, or Element Type Experiment</h1>
+<h2 id="selector">Existing content in h2#selector</h2>
+<h2 class="selector">Existing content in h2.selector</h2>
+<p class="selector">Existing content in p.selector</h2>
+<script src="../js/jquery-1.10.2.js">
+</script>
+<script>
+	$(function init() {
+		$("#selector").append(" Add this content to the only element with ID attribute set to 'selector'");
+		$(".selector").append(" Add this content to all elements with class attribute set to 'selector'");
+		$("h2").append(" Add this content to all elements of type H2");
+	});
+</script>

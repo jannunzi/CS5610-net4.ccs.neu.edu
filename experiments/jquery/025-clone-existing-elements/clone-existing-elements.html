@@ -1,0 +1,12 @@
+<h1>Cloning Exiting Content</h1>
+<div class="existing">Existing Content</div>
+<script src="../js/jquery-1.10.2.js">
+</script>
+<script>
+	$(function() {
+		var existing = $(".existing");
+		var copy = existing.clone();
+		var body = $("body");
+		body.append(copy);
+	});
+</script>

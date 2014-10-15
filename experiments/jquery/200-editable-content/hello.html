@@ -1,0 +1,32 @@
+<h1 contenteditable="true">Hello from jQuery</h1>
+<p contenteditable="true" class="editable">
+Editable Content
+</p>
+<div contenteditable="true" class="editable">
+
+</div>
+<button id="edit">Edit</button>
+<script src="../js/jquery-1.10.2.js"></script>
+<script src="../js/jquery-ui-1.10.4.custom.js"></script>
+<script>
+	$(function(){
+		$("#edit").click(makeContentEditable);
+		$(".editable").draggable();
+	});
+	
+	var editing = true;
+	function makeContentEditable() {
+		if(editing)
+		{
+			$("#edit").html("Done");
+			$(".editable").attr("contenteditable", "true");
+//			$(".editable").draggable("");
+		}
+		else
+		{
+			$("#edit").html("Edit");
+			$(".editable").attr("contenteditable", "false");
+		}
+		editing = !editing;
+	}
+</script>

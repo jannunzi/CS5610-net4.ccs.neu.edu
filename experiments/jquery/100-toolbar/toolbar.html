@@ -1,0 +1,35 @@
+<link href="../css/bootstrap.css" rel="stylesheet"/>
+<style>
+.site-footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+}
+.page-centered {
+	margin: 0 auto;
+	width: 960px;
+	height: 10px;
+	background: orange;
+}
+</style>
+<footer class="site-footer">
+<div class="page-centered toolbar">
+<button class="btn">Add</button>
+</div>
+</footer>
+
+<script src="../js/jquery-1.10.2.js"></script>
+<script>
+	var toolbar;
+	$(function(){
+		toolbar = $(".toolbar");
+		toolbar.hover(hoverIn, hoverOut);
+	});
+	
+	function hoverIn() {
+		toolbar.height(200);
+	}
+	function hoverOut() {
+		toolbar.height(10);
+	}
+</script>

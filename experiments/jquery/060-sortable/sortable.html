@@ -1,0 +1,40 @@
+<style>
+	ol.sort-me {
+		background-color : blue;
+		padding:5px;
+	}
+	ol.sort-me-vertical-only {
+		background-color : red;
+		padding:5px;
+	}
+</style>
+<h1>Sortable</h1>
+<ol class="sort-me">
+	<li>Item One</li>
+	<li>Item Two</li>
+	<li>Item Three</li>
+	<li>Item Four</li>
+	<li>Item Five</li>
+</ol>
+<ol class="sort-me-vertical-only">
+	<li>Item One</li>
+	<li>Item Two</li>
+	<li>Item Three</li>
+	<li>Item Four</li>
+	<li>Item Five</li>
+</ol>
+<script src="../js/jquery-1.10.2.js">
+</script>
+<script src="../js/jquery-ui-1.10.4.custom.js">
+</script>
+<script>
+	$(function init() {
+		$(".sort-me").sortable({
+			connectWith: '.sort-me-vertical-only'
+		});
+		$(".sort-me-vertical-only")
+			.sortable({
+				axis:'y',
+				connectWith:'.sort-me'});
+	});
+</script>
