@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script src="js/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //alert("Hello World from jQuery");
+            //jQuery("h1.green").html("Hello World from jQuery");
+            $("#goodbye").html("Goodbye from jQuery");
+            $(".green")
+                .html("Hello World from jQuery")
+                .css({ "color": "blue", "background-color": "yellow" });
+            //            $("#goodbye").empty();
+            $("#goodbye").append(" Hello again!");
+
+            var h2 = "<h2>Dynamically added H2</h2>";
+
+            $(h2).appendTo("body");
+
+            var values = [123, 234, 345, 456, 567];
+
+            var li = "<li>Dynamic Line Item</li>";
+
+            $("ul#list").append(li);
+            $("ul#list").append(li);
+            $("ul#list").append(li);
+
+            var ul = $("ul#list");
+
+            for (var i = 0; i < values.length; i++) {
+                var dli = $(li);
+                dli.append(" " + values[i]);
+                ul.append(dli);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1 id="goodbye">Hello World</h1>
+    <p>Hello</p>
+    <h1 class="green">Hello World</h1>
+    <p class="green">Hello</p>
+    <h1 class="green">Hello World</h1>
+    <ul id="list"></ul>
+</body>
+</html>

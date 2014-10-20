@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Draggable</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $(".list").sortable({
+                axis: 'y',
+                connectWith : ".list"
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Sortable</h1>
+    <ul class="list">
+        <li>Value 1</li>
+        <li>Value 2</li>
+        <li>Value 3</li>
+        <li>Value 4</li>
+        <li>Value 5</li>
+    </ul>
+    <ul class="list">
+        <li>Value A</li>
+        <li>Value B</li>
+        <li>Value C</li>
+        <li>Value D</li>
+        <li>Value E</li>
+    </ul>
+
+</body>
+</html>
