@@ -1,0 +1,99 @@
+<link href="../css/bootstrap.css" rel="stylesheet"/>
+<link href="ide.css" rel="stylesheet" />
+<link href="../css/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+<div class="toolbar">
+    <div class="container">
+        <div class="form-inline">
+            <select class="form-control content-selector">
+                <option value="h1">Heading 1 (H1)</option>
+                <option value="h2">Heading 2 (H2)</option>
+                <option value="h3">Heading 3 (H3)</option>
+                <option value="p">Paragraph (P)</option>
+                <option value="div">Div (DIV)</option>
+            </select>
+            <button class="btn btn-success add-btn">Add</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery-1.10.2.js"></script>
+<script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<script>
+    (function ($) {
+        $(".add-btn").click(addBtnHandler);
+
+        function addBtnHandler() {
+            var contentType = $(".content-selector").val();
+            console.log("add " + contentType);
+            addNewElement(contentType);
+        }
+
+        function addNewElement(contentType) {
+            var html = contentMap[contentType];
+            var dom = $(html)
+                .css({ overflow: "hidden", position: "absolute", top: 100, left: 100, width: 200, height: 200 })
+                .click(select);
+            $("body").append(dom);
+        }
+
+        function select(event) {
+            unselectAll();
+            $(this)
+                .draggable({ grid: [10, 10] })
+                .resizable({ grid: [10.10] })
+
+            highlight($(this));
+            addDelete($(this));
+        }
+
+        function unselectAll() {
+            $(".ide").each(function (index, elem) {
+                if ($(elem).hasClass("ui-draggable")) {
+                    $(elem)
+                        .draggable("destroy")
+                        .resizable("destroy")
+                        .css("box-shadow", "0px 0px 0px #888888");
+
+                }
+            })
+        }
+
+        function highlight(element) {
+            element.css("box-shadow", "0px 0px 15px #888888");
+        }
+        function addDelete(element) {
+            $(".delete-btn").remove();
+            $(".edit-btn").remove();
+            var deleteBtn = $("<button class='btn btn-danger delete-btn'>X</button>");
+            var editBtn = $("<button class='btn btn-success edit-btn'>...</button>");
+            deleteBtn.click(deleteElement);
+            editBtn.click(editElement);
+            element.append(deleteBtn);
+            element.append(editBtn);
+        }
+
+        function deleteElement() {
+            var element = $(this);
+            var parent = element.parent();
+            console.log(parent);
+            parent.remove();
+        }
+
+        function editElement() {
+            var element = $(this);
+            var parent = element.parent();
+
+            parent.attr("contenteditable", true);
+        }
+
+        var contentMap = {
+            "h1": "<h1 class='ide'>Heading 1</h1>",
+            "h2": "<h2 class='ide'>Heading 2</h2>",
+            "h3": "<h3 class='ide'>Heading 3</h3>",
+            "p": "<p class='ide'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h1>",
+            "div": "<div class='ide'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>"
+        };
+
+	})($);
+</script>

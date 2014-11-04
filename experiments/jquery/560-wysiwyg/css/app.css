@@ -1,0 +1,28 @@
+﻿body {
+}
+
+.toolbar {
+    position : absolute;
+    bottom : 0;
+    width : 100%;
+}
+
+.centered-div {
+    width : 400px;
+    margin : 0 auto;
+    padding-bottom : 10px;
+}
+
+.delete-btn {
+    position : absolute;
+    top:0px;
+    right: 0px;
+    margin:5px 5px;
+}
+
+.edit-btn {
+    position : absolute;
+    top:0px;
+    right: 40px;
+    margin:5px 5px;
+}

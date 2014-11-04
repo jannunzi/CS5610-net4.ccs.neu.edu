@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../javascript/jquery-1.10.2.js"></script>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Asmx Web Service</h1>
+
+        <h2>Get All Widgets</h2>
+
+        <button class="getAllWidgetsBtn btn btn-primary btn-block">Get All Widgets</button>
+
+        <ul class="allWidgets">
+
+        </ul>
+
+        <h2>Get Widget By ID</h2>
+        <input class="id form-control" />
+        <button class="getById btn btn-primary">Get By Id</button>
+        <label class="widget-id"></label>
+        <label class="widget-top"></label>
+        <label class="widget-html"></label>
+    </div>
+
+    <script>
+        $(function () {
+            $(".getById").click(getByIdHandler);
+            $(".getAllWidgetsBtn").click(getAllWidgetsBtnHandler);
+        });
+
+        function getAllWidgetsBtnHandler() {
+            getAllWidgets(renderAllWidgets);
+        }
+
+        function renderAllWidgets(widgets) {
+            console.log(widgets);
+            var ul = $(".allWidgets");
+            for (var w in widgets) {
+                var widget = widgets[w];
+                var li = $("<li>").append(widget.id);
+                ul.append(li);
+            }
+        }
+
+        function getByIdHandler() {
+            var id = $(".id").val();
+            getWidgetById(id, renderWidget);
+        }
+
+        function renderWidget(widget) {
+            $(".widget-id").html(widget.id);
+            $(".widget-html").html(widget.html);
+            $(".widget-top").html(widget.top);
+        }
+
+        function getAllWidgets(callback) {
+            $.ajax({
+                url: "http://localhost:59360/WidgetsService.asmx/getAllWidgets",
+                contentType: "application/json",
+                success: function (response) {
+                    if(typeof callback=="function")
+                        callback(response.d);
+                }
+            });
+        }
+
+        function getWidgetById(id, callback) {
+            $.ajax({
+                url: "http://localhost:59360/WidgetsService.asmx/getWidgetById",
+                contentType: "application/json",
+                data: { id: id },
+                success: function (response) {
+                    callback(response.d);
+                }
+            });
+        }
+
+        function getSomeWidget() {
+            $.ajax({
+                url: "http://localhost:59360/WidgetsService.asmx/getSomeWidget",
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response.d);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
